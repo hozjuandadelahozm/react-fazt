@@ -1,22 +1,34 @@
-import { useState } from 'react'
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import TaskCreator from "./components/TaskCreator";
 
 function App() {
-
-  const [ newTaskName, setNewTaskName ] = useState()
+  const [taskItems, settaskItems] = useState([
+    { name: "mi primer tarea", done: true },
+    { name: "mi segunda tarea", done: true },
+    { name: "mi tercer tarea", done: true },
+  ]);
 
   return (
     <div className="App">
-      
-      <form onSubmit={() => alert('submiting')}>
-        <input
-          type="text"
-          placeholder="Enter a new task"
-          onChange={(e) => setNewTaskName(e.target.value)}
-        />
-        <button>Save Task</button>
-      </form>
+      <TaskCreator/>
 
+      <table>
+        <thead>
+          <tr>
+            <th> Tasks </th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            taskItems.map((task) => (
+              <tr>
+                {task.name}
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
     </div>
   );
 }
