@@ -1,8 +1,7 @@
 import { useState } from 'react'
 
-export const TaskCreator = () => {
-
-    const [newTaskName, setNewTaskName] = useState();
+export const TaskCreator = (props) => {
+    const [newTaskName, setNewTaskName] = useState('');
 
     /**
         * La función handleSubmit se llama cuando se envía el formulario. Evita la acción predeterminada del
@@ -12,6 +11,7 @@ export const TaskCreator = () => {
     */
     const handleSubmit = (e) => {
         e.preventDefault();
+        props.createNewTask(newTaskName);
         localStorage.setItem("tasks", newTaskName);
         setNewTaskName("");
     };
